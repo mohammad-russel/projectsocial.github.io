@@ -32,7 +32,7 @@
                 <input type="submit" value="Sign up" id="submit" />
                 <br><br>
                 <button>
-                    <a href="index.php">Login</a>
+                    <a href="index.html">Login</a>
                 </button>
             </form>
         </div>
