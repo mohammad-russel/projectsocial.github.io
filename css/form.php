@@ -10,7 +10,7 @@
     .container {
         width: 100%;
         height: 100vh;
-        background: rgb(109, 109, 109);
+        background: rgb(220, 220, 220);
         display: flex;
         justify-content: center;
         align-items: center;
