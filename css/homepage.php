@@ -7,6 +7,10 @@
         font-family: 'Roboto', sans-serif;
     }
     
+    body {
+        background: #000;
+    }
+    
     .container {
         overflow: hidden;
         margin: auto;
@@ -173,6 +177,28 @@
         color: rgb(206, 206, 206);
     }
     
+    .editdelete {
+        display: none;
+        position: relative;
+        padding: 10px;
+        width: 100%;
+        background: rgb(21, 21, 21);
+        text-align: center;
+    }
+    
+    .editdelete button {
+        width: 100px;
+        height: 30px;
+        border-radius: 10px;
+        border: none;
+        font-size: 20px;
+        background: rgb(72, 72, 72);
+        letter-spacing: 3px;
+        font-weight: 600;
+        color: rgb(234, 234, 234);
+        cursor: pointer;
+    }
+    
     .more {}
     
     .more i svg {
@@ -256,17 +282,21 @@
     }
     
     .postfooter .like svg:hover {
-        color: rgb(27, 149, 0);
+        color: rgb(29, 132, 0);
     }
     
     .postfooter .dislike svg:hover {
-        color: rgb(193, 0, 0);
+        color: rgb(208, 0, 0);
     }
     
     .postfooter .comment svg:hover {
-        color: rgb(0, 199, 196);
+        color: rgb(0, 152, 149);
     }
     /* ----------------------- comment ----------------------- */
+    
+    .commentroom {
+        display: none;
+    }
     
     .commentbox {
         background: rgb(36, 36, 36);
