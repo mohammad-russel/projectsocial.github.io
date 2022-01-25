@@ -4,7 +4,7 @@
         overflow: auto;
         background: rgb(45, 45, 45);
     }
-    
+
     .peopleroom {
         height: max-content;
         padding: 10px;
@@ -12,7 +12,7 @@
         flex-wrap: wrap;
         justify-content: space-around;
     }
-    
+
     .peoplebox {
         background: rgb(30, 30, 30);
         width: 130px;
@@ -23,17 +23,20 @@
         margin: 15px 10px;
         box-shadow: rgb(6, 6, 6) 7px 8px 8px -1px;
     }
-    
+
     .peoplebox img {
         width: 90px;
+        height: 90px;
         border-radius: 50%;
+        object-fit: cover;
+
     }
-    
+
     .peoplebox h3 {
         color: rgb(183, 183, 183);
         letter-spacing: 2px;
     }
-    
+
     .peoplebox a {
         text-decoration: none;
         color: rgb(225, 225, 225);

@@ -1,12 +1,13 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
         font-family: 'Roboto', sans-serif;
     }
-    
+
     .container {
         width: 100%;
         height: 100vh;
@@ -15,7 +16,7 @@
         justify-content: center;
         align-items: center;
     }
-    
+
     .box {
         background: rgb(255, 255, 255);
         width: max-content;
@@ -24,16 +25,18 @@
         border-radius: 10px;
         box-shadow: 0px 0px 20px -12px;
     }
-    
+
     form {
         width: 100%;
     }
-    
+
     h1 {
         color: rgb(73, 73, 73);
         text-transform: uppercase;
     }
-    
+
+    #fname,
+    #lname,
     #number,
     #fullname,
     #email,
@@ -47,12 +50,12 @@
         outline: none;
         align-items: center;
     }
-    
+
     input::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
     }
-    
+
     #file {
         width: 0.1px;
         height: 0.1px;
@@ -61,7 +64,7 @@
         position: absolute;
         z-index: -1;
     }
-    
+
     label {
         width: 60%;
         font-size: 1.25em;
@@ -74,12 +77,12 @@
         display: inline-block;
         margin-bottom: 5px;
     }
-    
+
     #file:focus+label,
     #file+label:hover {
         background-color: green;
     }
-    
+
     #submit {
         width: 50%;
         padding: 5px 5px;
@@ -93,7 +96,7 @@
         background: rgb(27, 97, 172);
         height: 35px;
     }
-    
+
     button {
         width: 50%;
         text-transform: uppercase;
@@ -106,13 +109,13 @@
         background: rgb(48, 155, 144);
         cursor: pointer;
     }
-    
+
     a {
         text-decoration: none;
         color: rgb(255, 255, 255);
         font-weight: 600;
     }
-    
+
     @media only screen and (max-width: 450px) {
         .box {
             width: 100%;

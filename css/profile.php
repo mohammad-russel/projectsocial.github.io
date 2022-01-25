@@ -6,24 +6,103 @@
 
     .usercmb .coverpic {
         width: 98%;
+        cursor: pointer;
         margin: auto;
-        height: 10%;
+        height: 200px;
+        background: rgb(53, 53, 53);
     }
 
     .usercmb .coverpic img {
         width: 100%;
+        object-fit: cover;
+        height: 100%;
+        cursor: pointer;
     }
 
     .usercmb .userpic {
         width: 200px;
-        border-radius: 50%;
+        height: 200px;
         margin: auto;
         margin-top: -70px;
+        border-radius: 50%;
         overflow: hidden;
     }
 
     .usercmb .userpic img {
         width: 100%;
+        object-fit: cover;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    .userpicedit {
+        padding: 10px;
+        position: relative;
+        text-align: center;
+        width: 90%;
+        text-align: center;
+        background: rgb(40, 40, 40);
+        margin: auto;
+        border: 1px solid rgb(147, 147, 147);
+        display: none;
+    }
+
+    .userpicedit form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .userpicedit form input {
+        height: 30px;
+        text-align: center;
+        width: 100px;
+        font-size: 20px;
+    }
+
+    .userpicedit form img {
+        text-align: center;
+        margin: auto;
+    }
+
+    .userpicedit form #img {
+        display: none;
+    }
+
+    .coverpicedit {
+        padding: 10px;
+        position: relative;
+        text-align: center;
+        width: 90%;
+        text-align: center;
+        background: rgb(40, 40, 40);
+        margin: auto;
+        border: 1px solid rgb(147, 147, 147);
+        display: none;
+    }
+
+    .coverpicedit form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .coverpicedit form input {
+        height: 30px;
+        text-align: center;
+        width: 100px;
+        font-size: 20px;
+    }
+
+    .coverpicedit form img {
+        text-align: center;
+        margin: auto;
+    }
+
+    .coverpicedit form #cimg {
+        display: none;
     }
 
     .namebio {}
@@ -117,15 +196,17 @@
         align-items: center;
         box-shadow: black 0px 4px 4px -5px;
         padding: 5px;
+        width: 100%;
     }
 
     .userfullinfo .userinfos .inforoom .infobox i svg {
-        width: 30px;
+        width: 35px;
         margin: 0px 15px;
     }
 
     .userfullinfo .userinfos .inforoom .infobox i span {
         font-size: 20px;
+        word-break: break-all;
     }
 
     .editinfo {

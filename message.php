@@ -1,3 +1,16 @@
+<?php
+session_start();
+$useremail = $_SESSION['uemail'];
+if (!isset($useremail)) {
+    header("location:index.php");
+}
+?>
+<?php
+include "php/config.php";
+$mid = $_GET['mid'];
+$sql = "SELECT * FROM user WHERE id = $mid ";
+$result = mysqli_query($con, $sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,13 +34,18 @@
                         </svg>
                     </i>
                 </a>
-                <div class="messagerinfo">
-                    <img src="userimage/user.png" alt="">
-                    <div class="ua">
-                        <h2>mohammad russel</h2>
-                        <p>active now</p>
+                <?php
+                if (mysqli_num_rows($result)) {
+                    $row = mysqli_fetch_assoc($result);
+                ?>
+                    <div class="messagerinfo">
+                        <img src="userimage/<?php echo $row['propic'] ?>" alt="">
+                        <div class="ua">
+                            <h2><?php echo $row['fname'] ?> <?php echo $row['lname'] ?></h2>
+                            <p>active now</p>
+                        </div>
                     </div>
-                </div>
+                <?php } ?>
             </div>
             <div class="chatcontent">
                 <div class="messagebox">
@@ -48,58 +66,6 @@
 
                         </div>
                     </div>
-                    <div class="mt">
-                        <div class="time">
-                            <p>12.23.22/1.1.2022</p>
-                        </div>
-                        <div class="message r">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut minima error provident ea. Minus inventore magni fugit eos eius. Deserunt hic, dolorum voluptatibus ducimus quidem perferendis consequatur qui eius sapiente?</p>
-                        </div>
-                    </div>
-                    <div class="mt">
-                        <div class="time">
-                            <p>12.23.22/1.1.2022</p>
-                        </div>
-                        <div class="message l">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut minima error provident ea. Minus inventore magni fugit eos eius. Deserunt hic, dolorum voluptatibus ducimus quidem perferendis consequatur qui eius sapiente?</p>
-
-                        </div>
-                    </div>
-                    <div class="mt">
-                        <div class="time">
-                            <p>12.23.22/1.1.2022</p>
-                        </div>
-                        <div class="message r">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut minima error provident ea. Minus inventore magni fugit eos eius. Deserunt hic, dolorum voluptatibus ducimus quidem perferendis consequatur qui eius sapiente?</p>
-                        </div>
-                    </div>
-                    <div class="mt">
-                        <div class="time">
-                            <p>12.23.22/1.1.2022</p>
-                        </div>
-                        <div class="message l">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut minima error provident ea. Minus inventore magni fugit eos eius. Deserunt hic, dolorum voluptatibus ducimus quidem perferendis consequatur qui eius sapiente?</p>
-
-                        </div>
-                    </div>
-                    <div class="mt">
-                        <div class="time">
-                            <p>12.23.22/1.1.2022</p>
-                        </div>
-                        <div class="message r">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut minima error provident ea. Minus inventore magni fugit eos eius. Deserunt hic, dolorum voluptatibus ducimus quidem perferendis consequatur qui eius sapiente?</p>
-                        </div>
-                    </div>
-                    <div class="mt">
-                        <div class="time">
-                            <p>12.23.22/1.1.2022</p>
-                        </div>
-                        <div class="message l">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut minima error provident ea. Minus inventore magni fugit eos eius. Deserunt hic, dolorum voluptatibus ducimus quidem perferendis consequatur qui eius sapiente?</p>
-
-                        </div>
-                    </div>
-
                 </div>
             </div>
             <div class="chatfooter">

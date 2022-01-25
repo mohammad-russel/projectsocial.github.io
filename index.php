@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+if (isset($_SESSION["uemail"])) {
+    header("location:homepage.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,8 +15,25 @@
     <title>Document</title>
     <?php
     include "css/form.php";
+
     ?>
 </head>
+<?php
+include "php/config.php";
+if (isset($_POST['submit'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $sql = "SELECT * FROM user WHERE mail='{$email}' AND pass = '{$password}' ";
+    $result = mysqli_query($con, $sql);
+    if (mysqli_num_rows($result)) {
+        session_start();
+        $_SESSION['uemail'] = $email;
+        header("location:myprofile.php");
+    } else {
+        echo "maybe You enter Wrong Email/Password ";
+    }
+}
+?>
 
 <body>
     <div class="container">
@@ -21,7 +45,7 @@
                 <br><br>
                 <input type="password" name="password" id="password" placeholder="Password" required />
                 <br><br>
-                <input type="submit" value="Login" id="submit" />
+                <input type="submit" name="submit" value="Login" id="submit" />
                 <br><br>
                 <button>
                     <a href="signup.php">Sign up</a>
