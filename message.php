@@ -18,6 +18,7 @@ $result = mysqli_query($con, $sql);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Message</title>
     <?php include "css/homepage.php";  ?>
     <?php include "css/message.php";  ?>
@@ -48,59 +49,43 @@ $result = mysqli_query($con, $sql);
                 <?php } ?>
             </div>
             <div class="chatcontent">
-                <div class="messagebox">
-                    <div class="mt">
-                        <div class="time">
-                            <p>12.23.22/1.1.2022</p>
-                        </div>
-                        <div class="message r">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut minima error provident ea. Minus inventore magni fugit eos eius. Deserunt hic, dolorum voluptatibus ducimus quidem perferendis consequatur qui eius sapiente?</p>
-                        </div>
-                    </div>
-                    <div class="mt">
-                        <div class="time">
-                            <p>12.23.22/1.1.2022</p>
-                        </div>
-                        <div class="message l">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut minima error provident ea. Minus inventore magni fugit eos eius. Deserunt hic, dolorum voluptatibus ducimus quidem perferendis consequatur qui eius sapiente?</p>
-
-                        </div>
-                    </div>
+            </div>
+            <?php date_default_timezone_set("Asia/Dhaka"); ?>
+            <?php
+            include "php/config.php";
+            $sql1 = "SELECT * FROM user WHERE mail = '{$useremail}' ";
+            $result1 = mysqli_query($con, $sql1);
+            if (mysqli_num_rows($result1)) {
+                $row1 = mysqli_fetch_assoc($result1);
+            ?>
+                <div class="chatfooter">
+                    <label class="imglabel" for="img">
+                        <i>
+                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="image" class="svg-inline--fa fa-image fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <path fill="currentColor" d="M464 448H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h416c26.51 0 48 21.49 48 48v288c0 26.51-21.49 48-48 48zM112 120c-30.928 0-56 25.072-56 56s25.072 56 56 56 56-25.072 56-56-25.072-56-56-56zM64 384h384V272l-87.515-87.515c-4.686-4.686-12.284-4.686-16.971 0L208 320l-55.515-55.515c-4.686-4.686-12.284-4.686-16.971 0L64 336v48z"></path>
+                            </svg>
+                        </i>
+                    </label>
+                    <input type="file" name="img" id="img">
+                    <textarea name="msg" id="msg" placeholder="write message..."></textarea>
+                    <label class="inplabel" for="send">
+                        <i>
+                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="paper-plane" class="svg-inline--fa fa-paper-plane fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <path fill="currentColor" d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"></path>
+                            </svg>
+                        </i>
+                    </label>
+                    <input type="hidden" id="time" name="time" value=" <?php echo date("h:i / d-m-y"); ?> ">
+                    <input type="hidden" id="incoming" class="incoming" name="incoming" value="<?php echo $row['id']; ?>">
+                    <input type="hidden" id="outgoing" class="outgoing" name="outgoing" value="<?php echo $row1['id']; ?>">
+                    <input onclick="myfunc()" type="submit" id="send" value="Send">
                 </div>
-            </div>
-            <div class="chatfooter">
-                <label class="imglabel" for="img">
-                    <i>
-                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="image" class="svg-inline--fa fa-image fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                            <path fill="currentColor" d="M464 448H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h416c26.51 0 48 21.49 48 48v288c0 26.51-21.49 48-48 48zM112 120c-30.928 0-56 25.072-56 56s25.072 56 56 56 56-25.072 56-56-25.072-56-56-56zM64 384h384V272l-87.515-87.515c-4.686-4.686-12.284-4.686-16.971 0L208 320l-55.515-55.515c-4.686-4.686-12.284-4.686-16.971 0L64 336v48z"></path>
-                        </svg>
-                    </i>
-                </label>
-                <input type="file" name="img" id="img">
-                <textarea name="msg" id="msg" placeholder="write message..."></textarea>
-                <label class="inplabel" for="send">
-                    <i>
-                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="paper-plane" class="svg-inline--fa fa-paper-plane fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                            <path fill="currentColor" d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"></path>
-                        </svg>
-                    </i>
-
-                </label>
-
-                <input onclick="myfunc()" type="submit" id="send" value="Send">
-            </div>
+            <?php } ?>
         </div>
     </div>
 </body>
-<script>
-    function myfunc() {
-        document.querySelector(".chatcontent").scrollTop += 10000000;
-    }
-
-    function myload() {
-        document.querySelector(".chatcontent").scrollTop += 10000000;
-
-    }
-</script>
+<?php
+include "js/msg.php";
+?>
 
 </html>

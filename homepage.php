@@ -157,7 +157,8 @@ if (mysqli_num_rows($result)) {
                             </div>
                             <?php
                             include "php/config.php";
-                            $csql = "SELECT * FROM comment";
+                            $pid = $row5['id'];
+                            $csql = "SELECT * FROM comment WHERE postid = $pid";
                             $cresult = mysqli_query($con, $csql);
                             if (mysqli_num_rows($cresult)) {
                             ?>
@@ -189,23 +190,22 @@ if (mysqli_num_rows($result)) {
                                                 </div>
                                         </div>
                                     <?php } ?>
-                                    <div class="commentinput">
-                                        <div class="userimg">
-                                            <img src="userimage/<?php echo $row['propic'] ?>" alt="">
-                                        </div>
-                                        <input type="hidden" name="ctime" id="ctime" value=" <?php echo date("h:i / d-m-y"); ?>">
-                                        <textarea type="text" name="comment" id="commentinput" placeholder="Write comment..."></textarea>
-                                        <input type="hidden" name="comid" id="comid" value="<?php echo $row['id'] ?>">
-                                        <a href="#">
-                                            <i>
-                                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="paper-plane" class="svg-inline--fa fa-paper-plane fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                                    <path fill="currentColor" d="M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6 2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6 28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515 7.8 493.3-6.8 476 3.2z"></path>
-                                                </svg>
-                                            </i>
-                                        </a>
-                                    </div>
+
                                 </div>
                             <?php } ?>
+                            <div class="commentinput">
+                                <div class="userimg">
+                                    <img src="userimage/<?php echo $row['propic'] ?>" alt="">
+                                </div>
+                                <div style="display: none;" class="iid"><?php echo $row5['id'] ?></div>
+                                <form action="php/comment.php" method="post">
+                                    <input type="hidden" name="ctime" id="ctime" value=" <?php echo date("h:i / d-m-y"); ?>">
+                                    <input type="hidden" name="comid" id="comid" value="<?php echo $row['id'] ?>">
+                                    <input type="hidden" name="postid" id="postid" value="<?php echo $row5['id'] ?>">
+                                    <textarea type="text" name="comment" id="commentinput" placeholder="Write comment..." required></textarea>
+                                    <input type="submit" name="csubmit" class="csubmit" value="SEND">
+                                </form>
+                            </div>
                         </div>
                     <?php } ?>
                 </div>
@@ -213,92 +213,7 @@ if (mysqli_num_rows($result)) {
             <div class="space"></div>
         </main>
         </div>
-
     </body>
-    <script>
-        function moreclick() {
-            document.querySelector(".editdelete").style.display = "block";
-        }
-
-        function cclick() {
-            document.querySelector(".editdelete").style.display = "none";
-        }
-
-        // document.querySelector(".like5").addEventListener("click", like)
-
-        // function like() {
-        //     document.querySelector(".like5").style.backgroundColor = "rgb(22, 52, 14)";
-        //     document.querySelector(".like5 .svg").style.color = "green";
-        //     document.querySelector(".like5 .count").style.color = "green";
-        // }
-        // document.querySelector(".dislike").addEventListener("click", dislike)
-
-        // function dislike() {
-        //     document.querySelector(".dislike").style.backgroundColor = "rgb(116, 50, 50)";
-        //     document.querySelector(".dislike .svg").style.color = "red";
-        //     document.querySelector(".dislike .count").style.color = "red";
-        // }
-        // document.querySelector(".comment").addEventListener("click", comment)
-
-        // function comment() {
-        //     document.querySelector(".comment").style.backgroundColor = "rgb(14, 55, 54)";
-        //     document.querySelector(".comment .svg").style.color = "#009794";
-        //     document.querySelector(".comment .count").style.color = "#009794";
-        //     if (document.querySelector(".commentroom").style.display === "block") {
-        //         document.querySelector(".commentroom").style.display = "none";
-        //     } else {
-        //         document.querySelector(".commentroom").style.display = "block";
-        //     }
-        // }
-        function comment(id) {
-            if (document.querySelector(".commentroom" + id).style.display === "block") {
-                document.querySelector(".commentroom" + id).style.display = "none"
-                document.querySelector(".comment" + id).style.background = "red"
-            } else {
-                document.querySelector(".commentroom" + id).style.display = "block"
-            }
-        }
-
-        function like(pid) {
-
-            var likecount = $(".likecount" + pid).html()
-            likecount++;
-            $(".likecount" + pid).html(likecount);
-            $.ajax({
-                url: "php/like.php",
-                type: 'post',
-                data: {
-                    likecount: likecount,
-                    id: pid
-                },
-                success: function(data) {
-
-
-                }
-            })
-
-        }
-
-        function dislike(pid) {
-
-            var dislikecount = $(".dislikecount" + pid).html()
-            dislikecount++;
-            $(".dislikecount" + pid).html(dislikecount);
-            $.ajax({
-                url: "php/like.php",
-                type: 'post',
-                data: {
-                    dislikecount: dislikecount,
-                    id: pid
-                },
-                success: function(data) {
-
-
-                }
-            })
-
-        }
-    </script>
-
+    <?php include "js/homejs.php"; ?>
 
     </html>
